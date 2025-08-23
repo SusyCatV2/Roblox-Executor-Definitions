@@ -1,1 +1,3 @@
-This file contains functions used by multiple executors and that you can't normaly use in VS Code, but, by using this file, you can add support those functions and for Monaco. Once you set up the luau enviroment (search on google and YouTube if you don't know how) use this file as definition (don't forget to use the roblox official definition too: https://github.com/JohnnyMorganz/luau-lsp/blob/main/scripts/globalTypes.d.luau).
+# Roblox Executor Definitions
+
+This project provides you with type definitions for Roblox exploit enviroment based on Zenith executor documentation (don't forget to use the roblox official definition too: https://github.com/JohnnyMorganz/luau-lsp/blob/main/scripts/globalTypes.d.luau).
