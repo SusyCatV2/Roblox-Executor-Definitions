@@ -18,3 +18,37 @@ This project provides you with type definitions for Roblox exploit enviroment ba
 }
 ```
 6) Restart VS Code.
+
+# Features
+## Main:
+- Closures
+- HTTP
+- Input
+- Instance
+- Metatables
+- Scripts
+- Websoket
+## Secundary: (not full)
+- Actors
+- Bit
+- Csv
+- Cache
+- Debug
+- Directory Watcher
+- Drawing
+- Drawing Immediate
+- Duration
+- File System
+- Miscellaneous
+- Regex
+- Secure Table
+- Stopwatch
+## Cryptography: (soon)
+- Base64
+- Crypt
+- Derive
+- Hex
+- RSA
+## Math: (soon)
+- Spatial Math
+- Other Math Functions
