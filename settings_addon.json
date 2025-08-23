@@ -1,0 +1,5 @@
+{
+  "luau-lsp.types.definitionFiles": [
+          "path to the definitions file (do this for every file, one on each row)",
+  ]
+}
