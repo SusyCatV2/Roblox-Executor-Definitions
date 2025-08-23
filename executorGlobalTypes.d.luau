@@ -1,6 +1,10 @@
 type AnyFunc = (args: any) -> any
 type FunctionDrawnObject = Instance
 
+-- ACTORS --
+
+-- BIT --
+
 -- CSV --
 declare csv: {
     parse: (csvString: string, delimiter: string?) -> {},
@@ -39,6 +43,10 @@ do
     declare function compareinstances(a: Instance, b: Instance): boolean
 end
 
+-- DEBUG --
+
+-- DIRECTORYWATCHER --
+
 -- DRAWING --
 do
     declare Drawing: {
@@ -51,6 +59,10 @@ do
     declare function isrenderobj(object: any): boolean
     declare function cleardrawcache()
 end
+
+-- DRAWINGIMMEDIATE --
+
+-- DURATION --
 
 -- FILESYSTEM --
 do
@@ -180,7 +192,7 @@ do
     }
 end
 
--- SCRIPT --
+-- SCRIPTS --
 do
     declare function getgc(include_tables: boolean?): {}
     declare function filtergc(type_name: string, options: {}, return_one: boolean?): {} | Instance | nil
@@ -204,6 +216,8 @@ do
     declare function decompile(script: Instance): string
 end
 
+-- SECURETABLE --
+
 -- STOPWATCH --
 do
     type StopwatchFunctions = {
@@ -215,5 +229,24 @@ do
 
     declare Stopwatch: {
         new: () -> StopwatchFunctions
+    }
+end
+
+-- WEBSOCKET --
+do
+    type WebSocketClientMethods = {
+        Send: (self: WebSocketClientMethods, message: string) -> (),
+        send: (self: WebSocketClientMethods, message: string) -> (),
+        Close: () -> (),
+        close: () -> (),
+        OnMessage: RBXScriptSignal<() -> ()>,
+        OnClose: RBXScriptSignal<() -> ()>,
+    }
+
+    declare WebSoket: {
+        New: (url: string) -> WebSocketClientMethods,
+        new: (url: string) -> WebSocketClientMethods,
+        Connect: (url: string) -> WebSocketClientMethods,
+        connect: (url: string) -> WebSocketClientMethods,
     }
 end
