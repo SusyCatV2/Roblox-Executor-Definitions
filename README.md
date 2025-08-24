@@ -49,7 +49,7 @@ This project provides you with type definitions neede for a Roblox exploit envir
 - Derive
 - Hex
 - RSA
-## Math: (soon)
+## Math:
 - Constants
 - Spatial Mathematics
 - Angle / Trig helpers
