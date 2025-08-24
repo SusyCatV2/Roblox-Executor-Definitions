@@ -1,8 +1,8 @@
 # Roblox Executor Definitions
-Definitions for exploit enviroment using VS Code's [Luau Language Server](https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.luau-lsp)
+Modular definitions for an exploit enviroment using VS Code's [Luau Language Server](https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.luau-lsp)
 
 ## What is this?
-This project provides you with type definitions for Roblox exploit enviroment based on [Zenith executor documentation](https://docs.zenith.win/). This also adds autocomplete (Monaco) and type checking for executor exclusive functions.
+This project provides you with type definitions neede for a Roblox exploit enviroment based on [Zenith executor](https://docs.zenith.win/) (This will work with any executor, just make sure to not use any functions that are not supported). This also adds autocomplete (Monaco) and type checking for executor exclusive functions.
 
 ## Instalation:
 1) Install [VS Code](https://code.visualstudio.com/) (Of course);
