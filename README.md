@@ -55,3 +55,7 @@ This project provides you with type definitions neede for a Roblox exploit envir
 - Angle / Trig helpers
 - Numeric Helpers
 - Other Math Functions
+
+# Observations:
+1) Math definitions are not complete and will probably never be because of how many there are and most executors don't support only some of them;
+2) I tryed defining popular alliases used in executors, but didn't define all, because of the big number;
