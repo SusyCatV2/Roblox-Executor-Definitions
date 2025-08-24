@@ -56,7 +56,7 @@ do
 end
 
 -- DEBUG --
-declare debug: {
+declare debug: typeof(debug) & {
     getconstant: (func: AnyFunc | number, index: number) -> any,
     getconstants: (func: AnyFunc | number) -> {any},
     getinfo: (func: AnyFunc | number) -> DebugInfo,
