@@ -28,7 +28,7 @@ This project provides you with type definitions neede for a Roblox exploit envir
 - Metatables
 - Scripts
 - Websoket
-## Secundary: (not full)
+## Secundary:
 - Actors
 - Bit
 - Csv
