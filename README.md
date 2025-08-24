@@ -37,8 +37,29 @@ Includes autocomplete (Monaco) and type checking for executor-exclusive function
 5) In some cases, functions were typed with simplified return types. Real return values may differ depending on executor implementation.
 6) The structure allows further expansion and will be updated if new functions will be added to the executors. You can customize it however you want.
 
-## How to extend and create definitions:
-- If you want to create a new function (eg: hookfunction()) you can use:
-```luau
-define function name(parameter_name: type): return_type --Use () for functions that don't return anything. Use (return1: type, return2: type, etc) for multiple returns
-```
+## Advanced: How to extend and create definitions.
+- If you want to create a type (eg: string, number, etc.), use:
+  ```luau
+  type type_name: another_type_to_asign
+  --eg: type newType: string | number | boolean | nil
+  -- Most common types are string, number, boolean, nil, Instance and any (this can be anything).
+  -- Obs: there is not a type for tables. Instead, use {}.
+  -- Use the "|" operator to if its type can be variable (eg: type something: string | number, this type can be a string or a number)
+  ```
+- If you want to create a new function (eg: hookfunction(), loadstring(), etc.) you can use:
+  ```luau
+  declare function name(parameter_name: type): return_type
+  -- Use () for functions that don't return anything
+  -- Use (return_type1, return_type2, ...) for multiple returns
+  -- Use "|" if the return value can vary
+  ```
+- If you want to create a table you can:
+  ```luau
+  declare table_name: {
+      -- You can put here what you want. Here are some structures:
+      const_name: type, -- For constants
+      function_name: (parameter1: type, etc.) -> (return_type1, etc.), -- For functions
+      nested_table: {}, -- you can nest tables
+  }
+  -- Then you can use them in your scripts: table_name.const_name/function_name() or table_name.nested_table.constant/function()
+  ```
