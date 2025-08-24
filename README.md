@@ -29,7 +29,7 @@ Includes autocomplete (Monaco) and type checking for executor-exclusive function
 - [**Cryptography**](cryptography.d.luau): Base64, Crypt, Derive, Hex, RSA
 - [**Math**](math.d.luau): Constants, Spatial Mathematics, Angle/Trig helpers, Numeric helpers, Other math functions
 
-## Observations:
+## Observations
 1) Math definitions are not complete and will probably never be because of how many there are and most executors don't support only some of them.
 2) I tryed defining popular alliases used in executors, but didn't define all, because of the big number (remember, use the appropiate function/allias if it exists, else, report an issue).
 3) Not all cryptographic algorithms or modes are defined. Certain executors may have extra ones not covered here.
@@ -37,7 +37,7 @@ Includes autocomplete (Monaco) and type checking for executor-exclusive function
 5) In some cases, functions were typed with simplified return types. Real return values may differ depending on executor implementation.
 6) The structure allows further expansion and will be updated if new functions will be added to the executors. You can customize it however you want.
 
-## Advanced: How to extend and create definitions.
+## Advanced: How to extend and create definitions
 - If you want to create a type (eg: string, number, etc.), use:
   ```luau
   type type_name: another_type_to_asign
