@@ -58,4 +58,4 @@ This project provides you with type definitions neede for a Roblox exploit envir
 
 # Observations:
 1) Math definitions are not complete and will probably never be because of how many there are and most executors don't support only some of them;
-2) I tryed defining popular alliases used in executors, but didn't define all, because of the big number (remember, use the appropiate function/allias if it exists);
+2) I tryed defining popular alliases used in executors, but didn't define all, because of the big number (remember, use the appropiate function/allias if it exists, else, report an issue);
