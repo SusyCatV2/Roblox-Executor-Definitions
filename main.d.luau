@@ -134,10 +134,11 @@ do
         OnClose: RBXScriptSignal<() -> ()>,
     }
 
-    declare WebSoket: {
-        New: (url: string) -> WebSocketClientMethods,
-        new: (url: string) -> WebSocketClientMethods,
-        Connect: (url: string) -> WebSocketClientMethods,
-        connect: (url: string) -> WebSocketClientMethods,
-    }
+    declare class WebSoket
+        New: (url: string) -> WebSocketClientMethods
+        new: (url: string) -> WebSocketClientMethods
+        Connect: (url: string) -> WebSocketClientMethods
+        connect: (url: string) -> WebSocketClientMethods
+    end
+    declare WebSoket: WebSoket
 end
