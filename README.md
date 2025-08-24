@@ -36,3 +36,9 @@ Includes autocomplete (Monaco) and type checking for executor-exclusive function
 4) Some functions are unique to specific executors. These definitions may not match exactly across all environments.
 5) In some cases, functions were typed with simplified return types. Real return values may differ depending on executor implementation.
 6) The structure allows further expansion and will be updated if new functions will be added to the executors. You can customize it however you want.
+
+## How to extend and create definitions:
+- If you want to create a new function (eg: hookfunction()) you can use:
+```luau
+define function name(parameter_name: type): return_type --Use () for functions that don't return anything. Use (return1: type, return2: type, etc) for multiple returns
+```
