@@ -1,5 +1,5 @@
 # Roblox Executor Definitions
-Modular definitions for an exploit enviroment using VS Code's [Luau Language Server](https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.luau-lsp)
+Modular definitions for an exploit enviroment using VS Code's [Luau Language Server](https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.luau-lsp) (Please scroll down and read the observations before reporting any problem!)
 
 ## What is this?
 This project provides you with type definitions neede for a Roblox exploit enviroment (This will work with any executor, just make sure to not use functions that are not supported). This also adds autocomplete (Monaco) and type checking for executor exclusive functions.
