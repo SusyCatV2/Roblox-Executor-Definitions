@@ -50,5 +50,8 @@ This project provides you with type definitions neede for a Roblox exploit envir
 - Hex
 - RSA
 ## Math: (soon)
-- Spatial Math
+- Constants
+- Spatial Mathematics
+- Angle / Trig helpers
+- Numeric Helpers
 - Other Math Functions
