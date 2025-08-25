@@ -18,9 +18,9 @@ declare crypt: {
     },
 
     derive: {
-        key: (length: number, key: ByteString, sub_key_id: number, context: string) -> ByteString,
-        id: (length: number, key: ByteString, id: string) -> ByteString,
-        password: (length: number, password: string, salt: ByteString, iterations: number|string) -> ByteString,
+        key: (length: number, key: ByteString, sub_key_id: number, context: string) -> string | ByteString,
+        id: (length: number, key: ByteString, id: string) -> string | ByteString,
+        password: (length: number, password: string, salt: ByteString, iterations: number|string) -> string | ByteString,
     },
 
     rsa: {
@@ -49,4 +49,5 @@ declare crypt: {
     hexencode: (data: string) -> string,
     hexdecode: (data: string) -> string,
 }
+
 
