@@ -1,25 +1,19 @@
-type AnyFunc = (args: any) -> any
-type DebugInfo = string | number | AnyFunc
-type FunctionDrawnObject = Instance
-type ImmediateSignal = RBXScriptSignal
-type DrawFont = string
-type ByteString = string
-type HashAlgo = "md5" | "sha1" | "sha256" | "sha512" | string
+type Function = (...any) -> any
 
 -- CLOSURES --
 do
     declare function checkcaller(): boolean
     declare function clonefunction<T>(func: T): T
     declare function getcallingscript(): Instance
-    declare function restorefunction(func: AnyFunc): ()
-    declare function isfunctionhooked(func: AnyFunc): boolean
-    declare function isnewcclosure(func: AnyFunc): boolean
-    declare function get_wrapped_original(func: AnyFunc): AnyFunc
-    declare function hookfunction<T>(func: T, hook: AnyFunc): T
-    declare function iscclosure(func: AnyFunc): boolean
-    declare function islclosure(func: AnyFunc): boolean
-    declare function isexecutorclosure(func: AnyFunc): boolean
-    declare function loadstring(source: string, chunkname: string?): (AnyFunc?, string?)
+    declare function restorefunction(func: Function): ()
+    declare function isfunctionhooked(func: Function): boolean
+    declare function isnewcclosure(func: Function): boolean
+    declare function get_wrapped_original(func: Function): Function
+    declare function hookfunction<T>(func: T, hook: Function): T
+    declare function iscclosure(func: Function): boolean
+    declare function islclosure(func: Function): boolean
+    declare function isexecutorclosure(func: Function): boolean
+    declare function loadstring(source: string, chunkname: string?): (Function?, string?)
     declare function newcclosure<T>(func: T, debugname: string?): T
     declare function newlclosure<T>(func: T, debugname: string?): T
 end
@@ -113,8 +107,8 @@ do
     declare function getrenv(): {}
     declare function getscriptbytecode(script: Instance): string
     declare function dumpstring(script: Instance): string
-    declare function getscriptclosure(script: Instance): AnyFunc | nil
-    declare function getscriptfunction(script: Instance): AnyFunc | nil
+    declare function getscriptclosure(script: Instance): Function | nil
+    declare function getscriptfunction(script: Instance): Function | nil
     declare function getscripthash(script: Instance): string | nil
     declare function gettenv(thread: thread): {}
     declare function getscriptfromthread(thread: thread): Instance | nil
@@ -136,19 +130,25 @@ do
         send: (self: WebSocketClientMethods, message: string) -> (),
         Close: () -> (),
         close: () -> (),
-        OnMessage: RBXScriptSignal<() -> ()>,
+        OnMessage: RBXScriptSignal<(string) -> ()>,
         OnClose: RBXScriptSignal<() -> ()>,
     }
 
-    declare class WebSoket
+    declare class WebSocket
         New: (url: string) -> WebSocketClientMethods
         new: (url: string) -> WebSocketClientMethods
         Connect: (url: string) -> WebSocketClientMethods
         connect: (url: string) -> WebSocketClientMethods
     end
-    declare WebSoket: WebSoket
+    declare WebSoket: WebSocket
 end
-                                                                                                                                                                    
+
+type Function = (...any) -> any
+type DebugInfo = string | number | Function
+type FunctionDrawnObject = Instance
+type ImmediateSignal = RBXScriptSignal
+type DrawFont = string
+
 -- ACTORS --
 do
     declare function getactors(): {}
@@ -161,13 +161,13 @@ end
 
 -- BIT --
 declare bit: {
-    badd: (n1: number, n2: number, n3: number?) -> number,
-    bsub: (n1: number, n2: number, n3: number?) -> number,
-    bmul: (n1: number, n2: number, n3: number?) -> number,
-    bdiv: (n1: number, n2: number, n3: number?) -> number,
-    band: (n1: number, n2: number, n3: number?) -> number,
-    bor: (n1: number, n2: number, n3: number?) -> number,
-    bxor: (n1: number, n2: number, n3: number?) -> number,
+    badd: (...number) -> number,
+    bsub: (...number) -> number,
+    bmul: (...number) -> number,
+    bdiv: (...number) -> number,
+    band: (...number) -> number,
+    bor: (...number) -> number,
+    bxor: (...number) -> number,
     bnot: (number: number) -> number,
     lshift: (value: number, shift: number) -> number,
     rshift: (value: number, shift: number) -> number,
@@ -189,31 +189,27 @@ declare csv: {
 }
 
 -- CACHE --
-do
-    declare cache: {
-        invalidate: (object: Instance) -> (),
-        iscached: (object: Instance) -> boolean,
-        replace: (object: Instance, newObject: Instance) -> (),
-    }
+declare cache: {
+    invalidate: (object: Instance) -> (),
+    iscached: (object: Instance) -> boolean,
+    replace: (object: Instance, newObject: Instance) -> (),
+}
 
-    declare function cloneref(object: Instance): Instance
-    declare function compareinstances(a: Instance, b: Instance): boolean
-end
 
 -- DEBUG --
 declare debug: typeof(debug) & {
-    getconstant: (func: AnyFunc | number, index: number) -> any,
-    getconstants: (func: AnyFunc | number) -> {any},
-    getinfo: (func: AnyFunc | number) -> DebugInfo,
-    setconstant: (func: AnyFunc | number, index: number, value: any) -> (),
-    getproto: (func: AnyFunc | number, index: number, active: boolean?) -> AnyFunc,
-    getprotos: (func: AnyFunc | number) -> {AnyFunc},
+    getconstant: (func: Function | number, index: number) -> any,
+    getconstants: (func: Function | number) -> {any},
+    getinfo: (func: Function | number) -> DebugInfo,
+    setconstant: (func: Function | number, index: number, value: any) -> (),
+    getproto: (func: Function | number, index: number, active: boolean?) -> Function,
+    getprotos: (func: Function | number) -> {Function},
     getstack: (level: number, index: number?) -> any | {any},
     setstack: (level: number, index: number, value: any) -> (),
-    getupvalue: (func: AnyFunc | number, index: number) -> any,
-    getupvalues: (func: AnyFunc | number) -> {any},
-    setupvalue: (func: AnyFunc | number, index: number, value: any) -> (),
-    setname: (func: AnyFunc, name: string) -> (),
+    getupvalue: (func: Function | number, index: number) -> any,
+    getupvalues: (func: Function | number) -> {any},
+    setupvalue: (func: Function | number, index: number, value: any) -> (),
+    setname: (func: Function, name: string) -> (),
     isvalidlevel: (level: number) -> boolean,
     getregistry: () -> {},
 }
@@ -223,11 +219,11 @@ do
     type DirectoryWatcherMethods = {
         start: (self: DirectoryWatcherMethods) -> (),
         stop: (self: DirectoryWatcherMethods) -> (),
-        OnChanged: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
-        OnCreated: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
-        OnDeleted: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
-        OnRenamed: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
-        OnOverflow: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
+        OnChanged: (self: DirectoryWatcherMethods, callback: Function) -> (),
+        OnCreated: (self: DirectoryWatcherMethods, callback: Function) -> (),
+        OnDeleted: (self: DirectoryWatcherMethods, callback: Function) -> (),
+        OnRenamed: (self: DirectoryWatcherMethods, callback: Function) -> (),
+        OnOverflow: (self: DirectoryWatcherMethods, callback: Function) -> (),
         GetPath: (self: DirectoryWatcherMethods) -> string,
         IsRecursive: (self: DirectoryWatcherMethods) -> boolean,
     }
@@ -308,7 +304,7 @@ do
     declare Duration: Duration
 end
 
--- FILES SYSTEM --
+-- FILE SYSTEM --
 do
     declare function appendfile(path: string, data: string): ()
     declare function readfile(path: string): string
@@ -351,7 +347,7 @@ do
 
     declare class Regex
         new: (pattern: string) -> RegexFunctions
-        Escape: (str: string) -> RegexFunctions
+        Escape: (str: string) -> ()
     end
     declare Regex: Regex
 end
@@ -391,8 +387,31 @@ do
     end
     declare Stopwatch: Stopwatch
 end
-                                                                                                                                                                                                                    
--- Math
+
+-- LURAPH --
+do
+    declare LPH_OBFUSCATED : boolean
+    declare LPH_LINE : number
+    declare function LPH_JIT(func : any) : ()
+    declare function LPH_JIT_MAX(func : any) : ()
+    declare function LPH_NO_VIRTUALIZE(func : any) : ()
+    declare function LPH_NO_UPVALUES(func : any) : ()
+    declare function LPH_CRASH() : ()
+end
+
+-- LUARMOR --
+do
+    declare script_key : string
+    declare LRM_LinkedDiscordID: number
+    declare LRM_UserNote : string
+    declare LRM_ScriptName : string
+    declare LRM_TotalExecutions : number
+    declare LRM_IsUserPremium : boolean
+    declare LRM_SecondsLeft : number
+    declare LRM_ScriptVersion : string
+    declare function LRM_INIT(code : any) : ()
+end
+
 declare math: typeof(math) & {
     -- CONSTANTS --
     tau: number,
@@ -435,7 +454,10 @@ declare math: typeof(math) & {
     log2: (x: number) -> number,
     isfinite: (x: number) -> boolean
 }
-                                                                                                                                                                                                                                  
+
+type ByteString = string
+type HashAlgo = "md5" | "sha1" | "sha256" | "sha512" | string
+
 -- base64 aliases
 declare function base64_encode(data: string): string
 declare function base64_decode(data: string): string
@@ -453,9 +475,9 @@ declare crypt: {
     },
 
     derive: {
-        key: (length: number, key: ByteString, sub_key_id: number, context: string) -> ByteString,
-        id: (length: number, key: ByteString, id: string) -> ByteString,
-        password: (length: number, password: string, salt: ByteString, iterations: number|string) -> ByteString,
+        key: (length: number, key: ByteString, sub_key_id: number, context: string) -> string | ByteString,
+        id: (length: number, key: ByteString, id: string) -> string | ByteString,
+        password: (length: number, password: string, salt: ByteString, iterations: number|string) -> string | ByteString,
     },
 
     rsa: {
