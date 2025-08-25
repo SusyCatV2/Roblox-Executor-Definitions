@@ -1,5 +1,5 @@
-type AnyFunc = (args: any) -> any
-type DebugInfo = string | number | AnyFunc
+type Function = (...any) -> any
+type DebugInfo = string | number | Function
 type FunctionDrawnObject = Instance
 type ImmediateSignal = RBXScriptSignal
 type DrawFont = string
@@ -16,13 +16,13 @@ end
 
 -- BIT --
 declare bit: {
-    badd: (n1: number, n2: number, n3: number?) -> number,
-    bsub: (n1: number, n2: number, n3: number?) -> number,
-    bmul: (n1: number, n2: number, n3: number?) -> number,
-    bdiv: (n1: number, n2: number, n3: number?) -> number,
-    band: (n1: number, n2: number, n3: number?) -> number,
-    bor: (n1: number, n2: number, n3: number?) -> number,
-    bxor: (n1: number, n2: number, n3: number?) -> number,
+    badd: (...number) -> number,
+    bsub: (...number) -> number,
+    bmul: (...number) -> number,
+    bdiv: (...number) -> number,
+    band: (...number) -> number,
+    bor: (...number) -> number,
+    bxor: (...number) -> number,
     bnot: (number: number) -> number,
     lshift: (value: number, shift: number) -> number,
     rshift: (value: number, shift: number) -> number,
@@ -53,18 +53,18 @@ declare cache: {
 
 -- DEBUG --
 declare debug: typeof(debug) & {
-    getconstant: (func: AnyFunc | number, index: number) -> any,
-    getconstants: (func: AnyFunc | number) -> {any},
-    getinfo: (func: AnyFunc | number) -> DebugInfo,
-    setconstant: (func: AnyFunc | number, index: number, value: any) -> (),
-    getproto: (func: AnyFunc | number, index: number, active: boolean?) -> AnyFunc,
-    getprotos: (func: AnyFunc | number) -> {AnyFunc},
+    getconstant: (func: Function | number, index: number) -> any,
+    getconstants: (func: Function | number) -> {any},
+    getinfo: (func: Function | number) -> DebugInfo,
+    setconstant: (func: Function | number, index: number, value: any) -> (),
+    getproto: (func: Function | number, index: number, active: boolean?) -> Function,
+    getprotos: (func: Function | number) -> {Function},
     getstack: (level: number, index: number?) -> any | {any},
     setstack: (level: number, index: number, value: any) -> (),
-    getupvalue: (func: AnyFunc | number, index: number) -> any,
-    getupvalues: (func: AnyFunc | number) -> {any},
-    setupvalue: (func: AnyFunc | number, index: number, value: any) -> (),
-    setname: (func: AnyFunc, name: string) -> (),
+    getupvalue: (func: Function | number, index: number) -> any,
+    getupvalues: (func: Function | number) -> {any},
+    setupvalue: (func: Function | number, index: number, value: any) -> (),
+    setname: (func: Function, name: string) -> (),
     isvalidlevel: (level: number) -> boolean,
     getregistry: () -> {},
 }
@@ -74,11 +74,11 @@ do
     type DirectoryWatcherMethods = {
         start: (self: DirectoryWatcherMethods) -> (),
         stop: (self: DirectoryWatcherMethods) -> (),
-        OnChanged: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
-        OnCreated: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
-        OnDeleted: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
-        OnRenamed: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
-        OnOverflow: (self: DirectoryWatcherMethods, callback: AnyFunc) -> (),
+        OnChanged: (self: DirectoryWatcherMethods, callback: Function) -> (),
+        OnCreated: (self: DirectoryWatcherMethods, callback: Function) -> (),
+        OnDeleted: (self: DirectoryWatcherMethods, callback: Function) -> (),
+        OnRenamed: (self: DirectoryWatcherMethods, callback: Function) -> (),
+        OnOverflow: (self: DirectoryWatcherMethods, callback: Function) -> (),
         GetPath: (self: DirectoryWatcherMethods) -> string,
         IsRecursive: (self: DirectoryWatcherMethods) -> boolean,
     }
