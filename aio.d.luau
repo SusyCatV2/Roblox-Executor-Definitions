@@ -1,4 +1,8 @@
 type Function = (...any) -> any
+type DebugInfo = string | number | Function
+type FunctionDrawnObject = Instance
+type ImmediateSignal = RBXScriptSignal
+type DrawFont = string
 
 -- CLOSURES --
 do
@@ -142,12 +146,6 @@ do
     end
     declare WebSoket: WebSocket
 end
-
-type Function = (...any) -> any
-type DebugInfo = string | number | Function
-type FunctionDrawnObject = Instance
-type ImmediateSignal = RBXScriptSignal
-type DrawFont = string
 
 -- ACTORS --
 do
