@@ -44,16 +44,12 @@ declare csv: {
 }
 
 -- CACHE --
-do
-    declare cache: {
-        invalidate: (object: Instance) -> (),
-        iscached: (object: Instance) -> boolean,
-        replace: (object: Instance, newObject: Instance) -> (),
-    }
+declare cache: {
+    invalidate: (object: Instance) -> (),
+    iscached: (object: Instance) -> boolean,
+    replace: (object: Instance, newObject: Instance) -> (),
+}
 
-    declare function cloneref(object: Instance): Instance
-    declare function compareinstances(a: Instance, b: Instance): boolean
-end
 
 -- DEBUG --
 declare debug: typeof(debug) & {
@@ -163,7 +159,7 @@ do
     declare Duration: Duration
 end
 
--- FILES SYSTEM --
+-- FILE SYSTEM --
 do
     declare function appendfile(path: string, data: string): ()
     declare function readfile(path: string): string
@@ -206,7 +202,7 @@ do
 
     declare class Regex
         new: (pattern: string) -> RegexFunctions
-        Escape: (str: string) -> RegexFunctions
+        Escape: (str: string) -> ()
     end
     declare Regex: Regex
 end
