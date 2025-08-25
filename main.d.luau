@@ -130,15 +130,15 @@ do
         send: (self: WebSocketClientMethods, message: string) -> (),
         Close: () -> (),
         close: () -> (),
-        OnMessage: RBXScriptSignal<() -> ()>,
+        OnMessage: RBXScriptSignal<(string) -> ()>,
         OnClose: RBXScriptSignal<() -> ()>,
     }
 
-    declare class WebSoket
+    declare class WebSocket
         New: (url: string) -> WebSocketClientMethods
         new: (url: string) -> WebSocketClientMethods
         Connect: (url: string) -> WebSocketClientMethods
         connect: (url: string) -> WebSocketClientMethods
     end
-    declare WebSoket: WebSoket
+    declare WebSoket: WebSocket
 end
