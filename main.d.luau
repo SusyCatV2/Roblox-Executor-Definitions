@@ -1,19 +1,19 @@
-type AnyFunc = (args: any) -> any
+type Function = (...any) -> any
 
 -- CLOSURES --
 do
     declare function checkcaller(): boolean
     declare function clonefunction<T>(func: T): T
     declare function getcallingscript(): Instance
-    declare function restorefunction(func: AnyFunc): ()
-    declare function isfunctionhooked(func: AnyFunc): boolean
-    declare function isnewcclosure(func: AnyFunc): boolean
-    declare function get_wrapped_original(func: AnyFunc): AnyFunc
-    declare function hookfunction<T>(func: T, hook: AnyFunc): T
-    declare function iscclosure(func: AnyFunc): boolean
-    declare function islclosure(func: AnyFunc): boolean
-    declare function isexecutorclosure(func: AnyFunc): boolean
-    declare function loadstring(source: string, chunkname: string?): (AnyFunc?, string?)
+    declare function restorefunction(func: Function): ()
+    declare function isfunctionhooked(func: Function): boolean
+    declare function isnewcclosure(func: Function): boolean
+    declare function get_wrapped_original(func: Function): Function
+    declare function hookfunction<T>(func: T, hook: Function): T
+    declare function iscclosure(func: Function): boolean
+    declare function islclosure(func: Function): boolean
+    declare function isexecutorclosure(func: Function): boolean
+    declare function loadstring(source: string, chunkname: string?): (Function?, string?)
     declare function newcclosure<T>(func: T, debugname: string?): T
     declare function newlclosure<T>(func: T, debugname: string?): T
 end
@@ -107,8 +107,8 @@ do
     declare function getrenv(): {}
     declare function getscriptbytecode(script: Instance): string
     declare function dumpstring(script: Instance): string
-    declare function getscriptclosure(script: Instance): AnyFunc | nil
-    declare function getscriptfunction(script: Instance): AnyFunc | nil
+    declare function getscriptclosure(script: Instance): Function | nil
+    declare function getscriptfunction(script: Instance): Function | nil
     declare function getscripthash(script: Instance): string | nil
     declare function gettenv(thread: thread): {}
     declare function getscriptfromthread(thread: thread): Instance | nil
