@@ -242,3 +242,27 @@ do
     end
     declare Stopwatch: Stopwatch
 end
+
+-- LURAPH --
+do
+    declare LPH_OBFUSCATED : boolean
+    declare LPH_LINE : number
+    declare function LPH_JIT(func : any) : ()
+    declare function LPH_JIT_MAX(func : any) : ()
+    declare function LPH_NO_VIRTUALIZE(func : any) : ()
+    declare function LPH_NO_UPVALUES(func : any) : ()
+    declare function LPH_CRASH() : ()
+end
+
+-- LUARMOR --
+do
+    declare script_key : string
+    declare LRM_LinkedDiscordID: number
+    declare LRM_UserNote : string
+    declare LRM_ScriptName : string
+    declare LRM_TotalExecutions : number
+    declare LRM_IsUserPremium : boolean
+    declare LRM_SecondsLeft : number
+    declare LRM_ScriptVersion : string
+    declare function LRM_INIT(code : any) : ()
+end
