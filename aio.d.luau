@@ -3,6 +3,9 @@ type DebugInfo = string | number | Function
 type FunctionDrawnObject = Instance
 type ImmediateSignal = RBXScriptSignal
 type DrawFont = string
+type Byte = number
+type ByteString = string
+type HashAlgo = "md5" | "sha1" | "sha256" | "sha512" | string
 
 -- CLOSURES --
 do
@@ -91,6 +94,10 @@ do
     declare function getpcd(instance: TriangleMeshPart): (string, string)
     declare function getunionassetid(instance: UnionOperation): string
     declare function getbspval(instance: Instance, property: string, boolean: string): string
+    declare function hooksignal(signal: RBXScriptSignal, callback: Function): ()
+    declare function isconnectionenabled(connection: RBXScriptConnection): boolean
+    declare function issignalhooked(signal: RBXScriptSignal): boolean
+    declare function unhooksignal(signal: RBXScriptSignal):()
 end
 
 -- METATABLE --
@@ -193,6 +200,17 @@ declare cache: {
     replace: (object: Instance, newObject: Instance) -> (),
 }
 
+-- CONSOLE --
+do
+    declare function rconsoleclear(): ()
+    declare function rconsoleclose(): ()
+    declare function rconsoleerr(text: string): ()
+    declare function rconsoleinfo(text: string): ()
+    declare function rconsoleinput(): string
+    declare function rconsolename(title: string): ()
+    declare function rconsoleprint(text: string): ()
+    declare function printconsole(message: string, red: Byte, green: Byte, blue: Byte)
+end
 
 -- DEBUG --
 declare debug: typeof(debug) & {
@@ -315,6 +333,34 @@ do
     declare function delfolder(path: string): ()
 end
 
+-- ImGui --
+do
+    type TabItemMethods = {
+        Button: (params: {}) -> any,
+        InputItem: (params: {}) -> string,
+        CheckBox: (params: {}) -> boolean,
+        Slider: (params: {}) -> number,
+        ComboBox: (params: {}) -> any,
+        ListBox: (params: {}) -> any,
+        ColorPicker: (params: {}) -> Color3,
+        EndTabItem: () -> (),
+    }
+
+    type ImGuiMethods = {
+        Text: (params: {}) -> (),
+        TabBar: (params: {}) -> (),
+        TabItem: (params: {}) -> TabItemMethods,
+        EndTabBar: () -> (),
+        End: () -> ()
+    } 
+
+    declare class ImGui
+        new: (params: {}) -> ImGuiMethods
+    end
+
+    declare ImGui: ImGui
+end
+
 -- MISCELLANEOUS --
 do
     declare function identifyexecutor(): (string, string)
@@ -410,57 +456,11 @@ do
     declare function LRM_INIT(code : any) : ()
 end
 
-declare math: typeof(math) & {
-    -- CONSTANTS --
-    tau: number,
-    e: number,
-    phi: number,
-
-    -- Spatial Mathematics --
-    vector_add: (v1: {}, v2: {}) -> {},
-    vector_subtract: (v1: {}, v2: {}) -> {},
-    vector_dot_product: (v1: {}, v2: {}) -> {},
-    vector_cross_product: (v1: {}, v2: {}) -> {},
-    vector_normalize: (v: {}) -> {},
-    vector_magnitude: (v: {}) -> number,
-    distance: (v1: Vector3, v2: Vector3) -> number,
-    direction: (v1: Vector3, v2: Vector3) -> Vector3,
-    cross2D: (v1: Vector2, v2: Vector2) -> number,
-    angleBetween: (v1: Vector3, v2: Vector3) -> number,
-
-    -- Angle / Trig helpers --
-    deg2rad: (deg: number) -> number,
-    rad2deg: (rad: number) -> number,
-    clampAngle: (angle: number) -> number,
-    lerpAngle: (a: number, b: number, t: number) -> number,
-
-    -- Numeric Helpers --
-    lerp: (a: number, b: number, t: number) -> number,
-    invLerp: (a: number, b: number, v: number) -> number,
-    remap: (value: number, fromMin: number, fromMax: number, toMin: number, toMax: number) -> number,
-    round: (n: number, decimalPlaces: number) -> number,
-    sign: (n: number) -> number,
-
-    -- Other Functions --
-    magnitude: (v: Vector3) -> number,
-    dist: (p: {}, q: {}) -> number,
-    nextafter: (x: number, y: number, steps: number) -> number,
-    prod: (t: {}, start: number) -> number,
-    sumprod: (p: {}, q: {}) -> number,
-    remainder: (x: number, y: number) -> number,
-    log1p: (x: number) -> number,
-    log2: (x: number) -> number,
-    isfinite: (x: number) -> boolean
-}
-
-type ByteString = string
-type HashAlgo = "md5" | "sha1" | "sha256" | "sha512" | string
-
--- base64 aliases
+-- CRYPT ALIASES --
 declare function base64_encode(data: string): string
 declare function base64_decode(data: string): string
 
--- crypt
+-- CRYPT --
 declare crypt: {
     base64: {
         encode: (data: string) -> string,
@@ -503,4 +503,48 @@ declare crypt: {
     base64decode:(data: string) -> string,
     hexencode: (data: string) -> string,
     hexdecode: (data: string) -> string,
+}
+
+-- MATH --
+declare math: typeof(math) & {
+    -- CONSTANTS --
+    tau: number,
+    e: number,
+    phi: number,
+
+    -- Spatial Mathematics --
+    vector_add: (v1: {}, v2: {}) -> {},
+    vector_subtract: (v1: {}, v2: {}) -> {},
+    vector_dot_product: (v1: {}, v2: {}) -> {},
+    vector_cross_product: (v1: {}, v2: {}) -> {},
+    vector_normalize: (v: {}) -> {},
+    vector_magnitude: (v: {}) -> number,
+    distance: (v1: Vector3, v2: Vector3) -> number,
+    direction: (v1: Vector3, v2: Vector3) -> Vector3,
+    cross2D: (v1: Vector2, v2: Vector2) -> number,
+    angleBetween: (v1: Vector3, v2: Vector3) -> number,
+
+    -- Angle / Trig helpers --
+    deg2rad: (deg: number) -> number,
+    rad2deg: (rad: number) -> number,
+    clampAngle: (angle: number) -> number,
+    lerpAngle: (a: number, b: number, t: number) -> number,
+
+    -- Numeric Helpers --
+    lerp: (a: number, b: number, t: number) -> number,
+    invLerp: (a: number, b: number, v: number) -> number,
+    remap: (value: number, fromMin: number, fromMax: number, toMin: number, toMax: number) -> number,
+    round: (n: number, decimalPlaces: number) -> number,
+    sign: (n: number) -> number,
+
+    -- Other Functions --
+    magnitude: (v: Vector3) -> number,
+    dist: (p: {}, q: {}) -> number,
+    nextafter: (x: number, y: number, steps: number) -> number,
+    prod: (t: {}, start: number) -> number,
+    sumprod: (p: {}, q: {}) -> number,
+    remainder: (x: number, y: number) -> number,
+    log1p: (x: number) -> number,
+    log2: (x: number) -> number,
+    isfinite: (x: number) -> boolean
 }
