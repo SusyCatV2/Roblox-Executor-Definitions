@@ -3,6 +3,7 @@ type DebugInfo = string | number | Function
 type FunctionDrawnObject = Instance
 type ImmediateSignal = RBXScriptSignal
 type DrawFont = string
+type Byte = number
 
 -- ACTORS --
 do
@@ -50,6 +51,17 @@ declare cache: {
     replace: (object: Instance, newObject: Instance) -> (),
 }
 
+-- CONSOLE --
+do
+    declare function rconsoleclear(): ()
+    declare function rconsoleclose(): ()
+    declare function rconsoleerr(text: string): ()
+    declare function rconsoleinfo(text: string): ()
+    declare function rconsoleinput(): string
+    declare function rconsolename(title: string): ()
+    declare function rconsoleprint(text: string): ()
+    declare function printconsole(message: string, red: Byte, green: Byte, blue: Byte)
+end
 
 -- DEBUG --
 declare debug: typeof(debug) & {
@@ -170,6 +182,34 @@ do
     declare function isfolder(path: string): boolean
     declare function delfile(path: string): ()
     declare function delfolder(path: string): ()
+end
+
+-- ImGui --
+do
+    type TabItemMethods = {
+        Button: (params: {}) -> any,
+        InputItem: (params: {}) -> string,
+        CheckBox: (params: {}) -> boolean,
+        Slider: (params: {}) -> number,
+        ComboBox: (params: {}) -> any,
+        ListBox: (params: {}) -> any,
+        ColorPicker: (params: {}) -> Color3,
+        EndTabItem: () -> (),
+    }
+
+    type ImGuiMethods = {
+        Text: (params: {}) -> (),
+        TabBar: (params: {}) -> (),
+        TabItem: (params: {}) -> TabItemMethods,
+        EndTabBar: () -> (),
+        End: () -> ()
+    } 
+
+    declare class ImGui
+        new: (params: {}) -> ImGuiMethods
+    end
+
+    declare ImGui: ImGui
 end
 
 -- MISCELLANEOUS --
