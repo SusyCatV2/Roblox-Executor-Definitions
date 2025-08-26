@@ -1,11 +1,11 @@
 type ByteString = string
 type HashAlgo = "md5" | "sha1" | "sha256" | "sha512" | string
 
--- base64 aliases
+-- ALIASES --
 declare function base64_encode(data: string): string
 declare function base64_decode(data: string): string
 
--- crypt
+-- CRYPT --
 declare crypt: {
     base64: {
         encode: (data: string) -> string,
