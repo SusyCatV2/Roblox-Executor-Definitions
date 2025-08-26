@@ -87,6 +87,10 @@ do
     declare function getpcd(instance: TriangleMeshPart): (string, string)
     declare function getunionassetid(instance: UnionOperation): string
     declare function getbspval(instance: Instance, property: string, boolean: string): string
+    declare function hooksignal(signal: RBXScriptSignal, callback: Function): ()
+    declare function isconnectionenabled(connection: RBXScriptConnection): boolean
+    declare function issignalhooked(signal: RBXScriptSignal): boolean
+    declare function unhooksignal(signal: RBXScriptSignal):()
 end
 
 -- METATABLE --
