@@ -24,7 +24,7 @@ Includes autocomplete (Monaco) and type checking for executor-exclusive function
 6) Restart VS Code.
 
 ## Features
-- [**Core**](main.d.luau): Closures, HTTP, Input, Instance, Metatables, Scripts, WebSocket
+- [**Core**](core.d.luau): Closures, HTTP, Input, Instance, Metatables, Scripts, WebSocket
 - [**Additional**](secundary.d.luau): Actors, Bit, CSV, Cache, Debug, Directory Watcher, Drawing, Drawing Immediate, Duration, File System, Miscellaneous, Regex, Secure Table, Stopwatch
 - [**Cryptography**](cryptography.d.luau): Base64, Crypt, Derive, Hex, RSA
 - [**Math**](math.d.luau): Constants, Spatial Mathematics, Angle/Trig helpers, Numeric helpers, Other math functions
